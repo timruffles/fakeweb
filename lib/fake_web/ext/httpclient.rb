@@ -38,8 +38,11 @@ class HTTPClient
   end
   
   def do_get_block_with_fakeweb(req, proxy, conn, &block)
+    
     method  = req.header.request_method.downcase.to_sym
     uri     = req.header.request_uri
+    
+    FakeWeb.uri_called(uri.to_s)
     
     if FakeWeb.registered_uri?(method, uri)
       response = FakeWeb.response_for(method, uri, &block).extend(FakeWebHTTPClientResponseWrapper)

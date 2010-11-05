@@ -214,3 +214,5 @@ module FakeWeb
     $stderr.puts "Called at #{caller[1]}"
   end
 end
+
+require 'fake_web/ext/counter'
